@@ -33,3 +33,17 @@ bmiTell weight height
 calcBmis :: [(Double, Double)] -> [Double]
 calcBmis xs = [bmi w h | (w, h) <- xs]
     where bmi weight height = weight / height ^ 2
+
+printStringNTimes 0 x = return ()
+printStringNTimes n x =
+ do
+  putStrLn x
+  printStringNTimes (n-1) x
+
+
+quicksort :: (Ord a) => [a] -> [a]
+quicksort [] = []
+quicksort (x:xs) =
+  let smallerOrEqual = [a | a <- xs, a <= x]
+      larger = [a | a <- xs, a > x]
+  in  quicksort smallerOrEqual ++ [x] ++ quicksort larger
